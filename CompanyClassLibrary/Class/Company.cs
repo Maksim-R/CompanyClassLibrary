@@ -6,7 +6,33 @@ using System.Threading.Tasks;
 
 namespace CompanyClassLibrary.Class
 {
-    internal class Company
+    public class Company
     {
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public List<Department> Departments { get; set; } = new List<Department>();
+
+        public Company() { }
+        public Company(string? name, string? description) 
+        {  
+            Name = name; 
+            Description = description; 
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Название Kомпании: {Name}");
+            Console.WriteLine($"Описание Kомпании: {Description}");
+        }
+
+        public int GetDepartmentsCount() 
+        { 
+            return Departments.Count; 
+        }
+
+        public void PrintDepartmentsCount() 
+        {
+            Console.WriteLine($"Количество отделов: {GetDepartmentsCount()}");
+        }
     }
 }
