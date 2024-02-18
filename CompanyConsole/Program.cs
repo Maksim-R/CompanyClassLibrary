@@ -21,12 +21,22 @@ using System;
 
 Company company = new Company("My Company", "Делаем все");
 company.Print();
-company.PrintDepartmentsCount();
+
+Department administration = new Department("Administration");
+company.Departments.Add(administration);
 
 Department it = new Department("IT");
 company.Departments.Add(it);
 
-Department administration = new Department("Administration");
-company.Departments.Add(administration);
+Department legal = new Department("Юридический");
+company.Departments.Add(legal);
+
+Department accounting = new Department("Бухгалтерия");
+company.Departments.Add(accounting);
+
+Department oi = new Department("Охрана труда");
+company.Departments.Add(oi);
+
+
 
 company.PrintDepartmentsCount();
