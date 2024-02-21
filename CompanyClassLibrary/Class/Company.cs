@@ -34,5 +34,17 @@ namespace CompanyClassLibrary.Class
         {
             Console.WriteLine($"Количество отделов: {GetDepartmentsCount()}");
         }
+
+        public void PrintDepartmentsInfo() // Выводит в консоль количество отделов и сотрудников
+        {
+            PrintDepartmentsCount();
+            foreach (Department department in Departments)
+            {
+                department.PrintDepartmentInfo();
+                Console.WriteLine("---------------------");
+                department.PrintEmployeesInfo();
+            }
+        }
+
     }
 }

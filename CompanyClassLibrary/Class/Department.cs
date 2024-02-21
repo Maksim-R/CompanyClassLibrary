@@ -10,7 +10,7 @@ namespace CompanyClassLibrary.Class
     {
         protected Guid Id = Guid.NewGuid();
         string? DepadtmentName { get; set; } = string.Empty;
-        List<Employee>? Employees { get; set; }
+        public List<Employee>? Employees { get; set; }
 
         public Department() { }
 
@@ -28,6 +28,21 @@ namespace CompanyClassLibrary.Class
         public void PrintEmployessCount() 
         {
             Console.WriteLine($"Количестово сотрудников в отделе: {GetEmployeesCount()}");
+        }
+
+        public void PrintDepartmentInfo()
+        {
+            Console.WriteLine($"Название отдела: {DepadtmentName}");
+            PrintEmployessCount();
+        }
+
+        public void PrintEmployeesInfo()
+        {
+            foreach(Employee employee in Employees)
+            {
+                employee.Print();
+                Console.WriteLine("----------------------");
+            }
         }
     }
 }

@@ -8,5 +8,6 @@ namespace CompanyClassLibrary.Class
 {
     internal class FreelanceEmployee
     {
+
     }
 }

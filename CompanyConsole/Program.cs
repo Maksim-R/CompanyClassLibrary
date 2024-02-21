@@ -37,6 +37,9 @@ company.Departments.Add(accounting);
 Department oi = new Department("Охрана труда");
 company.Departments.Add(oi);
 
+Employee e1 = new Employee();
+e1.FirstName = "Ivan";
+e1.Email = "qwe@qwe.ru";
+company.Departments[0].Employees?.Add(e1);
 
-
-company.PrintDepartmentsCount();
+company.PrintDepartmentsInfo();

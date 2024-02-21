@@ -10,7 +10,7 @@
         public string? Gender { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
-
+                
         // Метод для вывода информации о сотруднике
         public virtual void Print()
         {
