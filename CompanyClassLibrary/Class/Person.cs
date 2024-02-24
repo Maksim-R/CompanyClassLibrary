@@ -10,7 +10,9 @@
         public string? Gender { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
-                
+
+      
+
         // Метод для вывода информации о сотруднике
         public virtual void Print()
         {
@@ -24,9 +26,17 @@
         }
 
         // Создаем метод для преобразования типа DateOnly в тип string.
-        public void EmployeeBirthData(string dateString)
+        public void SetEmployeeBirthDate(string dateString, string departmentName)
         {
-            BirthDate = DateOnly.Parse(dateString);
+            try 
+            {
+                BirthDate = DateOnly.Parse(dateString);
+            }
+            catch
+            {
+                Console.WriteLine($"Ошибка! Отдел {departmentName}, Имя сотрудника {FirstName}, Фамилия сотрудника {LastName}");
+                Console.ReadKey();
+            }
         }
     }
 }

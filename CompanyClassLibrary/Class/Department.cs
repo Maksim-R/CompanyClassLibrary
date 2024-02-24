@@ -9,15 +9,15 @@ namespace CompanyClassLibrary.Class
     public class Department
     {
         protected Guid Id = Guid.NewGuid();
-        string? DepadtmentName { get; set; } = string.Empty;
+        public string? DepartmentName { get; set; } = string.Empty;
         public List<Employee>? Employees { get; set; }
 
         public Department() { }
 
-        public Department(string depadtmentName)
+        public Department(string departmentName)
         {
             Employees = new List<Employee>();
-            DepadtmentName = depadtmentName;
+            DepartmentName = departmentName;
         }
 
         public int GetEmployeesCount()
@@ -32,7 +32,7 @@ namespace CompanyClassLibrary.Class
 
         public void PrintDepartmentInfo()
         {
-            Console.WriteLine($"Название отдела: {DepadtmentName}");
+            Console.WriteLine($"Название отдела: {DepartmentName}");
             PrintEmployessCount();
         }
 
@@ -43,6 +43,24 @@ namespace CompanyClassLibrary.Class
                 employee.Print();
                 Console.WriteLine("----------------------");
             }
+        }
+
+        public void AddEmpoyeeToDepartment(string firstName, string lastName, string gender, string birthDate, string email, string phone, string employeePosition)
+        {
+            DateOnly temp;
+                      
+            DateOnly.TryParse(birthDate, out temp);
+            
+            Employee employee = new Employee();
+            employee.FirstName = firstName;
+            employee.LastName = lastName;
+            employee.Gender = gender;
+            employee.BirthDate = temp;
+            employee.Email = email;
+            employee.Phone = phone;
+            employee.EmployeePosition = employeePosition;
+
+            Employees.Add(employee);
         }
     }
 }

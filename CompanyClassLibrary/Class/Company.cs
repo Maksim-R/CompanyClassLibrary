@@ -23,6 +23,7 @@ namespace CompanyClassLibrary.Class
         {
             Console.WriteLine($"Название Kомпании: {Name}");
             Console.WriteLine($"Описание Kомпании: {Description}");
+            Console.WriteLine("*******************************");
         }
 
         public int GetDepartmentsCount() 
