@@ -50,15 +50,15 @@ namespace CompanyClassLibrary.Class
         // Метод для подсчета общего количества сотрудников во всех отделах компании
         public int GetTotalEmployeesCount()
         {
-            int totalEmployeesCount = 0;
-            foreach (var department in Departments)
+            int totalEmployeesCount = 0; // Инициализируем переменную для хранения общего количества сотрудников
+            foreach (var department in Departments) // Для каждого отдела в списке отделов компании
             {
-                if (department.Employees != null)
+                if (department.Employees != null) // Проверяем, что список сотрудников отдела не равен null
                 {
-                    totalEmployeesCount += department.Employees.Count;
+                    totalEmployeesCount += department.Employees.Count; // Увеличиваем общее количество сотрудников на количество сотрудников в текущем отделе
                 }
             }
-            return totalEmployeesCount;
+            return totalEmployeesCount; // Возвращаем общее количество сотрудников
         }
 
     }
