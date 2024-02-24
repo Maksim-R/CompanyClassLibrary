@@ -47,5 +47,19 @@ namespace CompanyClassLibrary.Class
             }
         }
 
+        // Метод для подсчета общего количества сотрудников во всех отделах компании
+        public int GetTotalEmployeesCount()
+        {
+            int totalEmployeesCount = 0;
+            foreach (var department in Departments)
+            {
+                if (department.Employees != null)
+                {
+                    totalEmployeesCount += department.Employees.Count;
+                }
+            }
+            return totalEmployeesCount;
+        }
+
     }
 }

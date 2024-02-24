@@ -10,6 +10,22 @@ namespace CompanyClassLibrary.Class
     {
         public string? EmployeePosition { get; set; }
 
+        // Конструктор со всеми параметрами
+        public Employee(string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
+        {
+            DateOnly temp;
+
+            DateOnly.TryParse(birthDate, out temp);
+
+            FirstName = firstName;
+            LastName = lastName;
+            BirthDate = temp;
+            Gender = gender;
+            Email = email;
+            Phone = phone;
+            EmployeePosition = employeePosition;
+        }
+
         public override void Print()
         {
             base.Print();

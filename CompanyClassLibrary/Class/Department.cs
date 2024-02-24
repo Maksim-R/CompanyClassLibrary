@@ -10,22 +10,29 @@ namespace CompanyClassLibrary.Class
     {
         protected Guid Id = Guid.NewGuid();
         public string? DepartmentName { get; set; } = string.Empty;
-        public List<Employee>? Employees { get; set; }
+        public List<Employee>? Employees { get; set; } // Список сотрудников
 
-        public Department() { }
+        public Department() { } // Пустой конструктор (без параметров)
 
-        public Department(string departmentName)
+        public Department(string departmentName) // Конструктор создает новый объект класса. конструктор инициализирует новый объект Department, устанавливая название отдела и создавая пустой список для хранения сотрудников. 
         {
-            Employees = new List<Employee>();
-            DepartmentName = departmentName;
+            Employees = new List<Employee>(); // Создается новый список Employees типа List<Employee>(), который будет хранить информацию о сотрудниках в данном отделе. 
+            DepartmentName = departmentName; // Значение параметра departmentName присваивается свойству DepartmentName объекта класса Department.
         }
 
-        public int GetEmployeesCount()
+        public int GetEmployeesCount() // Количество сотрудников
         {
-            return Employees.Count;
+            if (Employees != null) // Проверяем, что список сотрудников не равен null
+            {
+                return Employees.Count; // Возвращае количество сторудников из списка List<Employee>?
+            }
+            else 
+            {
+                return 0; // Возвращает 0, если список сотрудников не инициализирован (равен null)
+            }
         }
 
-        public void PrintEmployessCount() 
+        public void PrintEmployessCount()
         {
             Console.WriteLine($"Количестово сотрудников в отделе: {GetEmployeesCount()}");
         }
@@ -36,31 +43,17 @@ namespace CompanyClassLibrary.Class
             PrintEmployessCount();
         }
 
-        public void PrintEmployeesInfo()
+        public void PrintEmployeesInfo() // Вывод информации о каждом сотруднике, который работает в данном отделе.
         {
-            foreach(Employee employee in Employees)
+            if (Employees != null)
             {
-                employee.Print();
-                Console.WriteLine("----------------------");
-            }
+                foreach (Employee employee in Employees) // Цикл перебирает каждого сотрудника (Employee) в списке Employees текущего отдела.
+                {
+                    employee.Print();
+                    Console.WriteLine("----------------------");
+                }
+            }            
         }
-
-        public void AddEmpoyeeToDepartment(string firstName, string lastName, string gender, string birthDate, string email, string phone, string employeePosition)
-        {
-            DateOnly temp;
-                      
-            DateOnly.TryParse(birthDate, out temp);
-            
-            Employee employee = new Employee();
-            employee.FirstName = firstName;
-            employee.LastName = lastName;
-            employee.Gender = gender;
-            employee.BirthDate = temp;
-            employee.Email = email;
-            employee.Phone = phone;
-            employee.EmployeePosition = employeePosition;
-
-            Employees.Add(employee);
-        }
+               
     }
 }

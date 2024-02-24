@@ -2,23 +2,6 @@
 using CompanyClassLibrary.Class;
 using System;
 
-//Person p1 = new Person();
-//p1.FirstName = "Test";
-//p1.LastName = "Test2";
-//p1.EmployeeBirthData("2022/10/24");
-//p1.Gender = "Мужской";
-//p1.Email = "Test@test.com";
-//p1.Phone = "1234567890";
-//p1.Print();
-//Console.WriteLine("---------------------------------------------");
-//Employee p2 = new Employee();
-//p2.FirstName = "Test2";
-//p2.LastName = "Василий";
-//p2.Email = "";
-//p2.EmployeePosition = "Координатор";
-//p2.Print();
-//Console.WriteLine("---------------------------------------------");
-
 Company company = new Company("My Company", "Делаем все");
 company.Print();
 
@@ -37,51 +20,14 @@ company.Departments.Add(accounting);
 Department oi = new Department("OI");
 company.Departments.Add(oi);
 
-Employee admin1 = new Employee();
-admin1.FirstName = "Иван";
-admin1.LastName = "Фролов";
-admin1.Gender = "Мужской";
-admin1.SetEmployeeBirthDate("12/12/2000", company.Departments[0].DepartmentName);
-admin1.Email = "qwe@test.ru";
-admin1.Phone = "79511234567";
-admin1.EmployeePosition = "Руководитель";
-company.Departments[0].Employees?.Add(admin1);
-company.Departments[0].AddEmpoyeeToDepartment("Сергей", "Антонов", "Мужской", "12.11.2001", "qwe@test.ru", "79511234567", "Помощник руководителя");
-
-//Employee it1 = new Employee();
-//it1.FirstName = "Ирина";
-//it1.LastName = "Фурьева";
-//it1.Gender = "Женский";
-//it1.SetEmployeeBirthDate("11.11.1990", company.Departments[1].DepartmentName);
-//it1.Email = "IF@test.ru";
-//it1.Phone = "79511234567";
-//company.Departments[1].Employees?.Add(it1);
-
-//Employee leg1 = new Employee();
-//leg1.FirstName = "Ирина";
-//leg1.LastName = "Фурьева";
-//leg1.Gender = "Женский";
-//leg1.SetEmployeeBirthDate("11.11.1983", company.Departments[2].DepartmentName);
-//leg1.Email = "IF@test.ru";
-//leg1.Phone = "79511234567";
-//company.Departments[2].Employees?.Add(leg1);
-
-//Employee acc1 = new Employee();
-//acc1.FirstName = "Светлана";
-//acc1.LastName = "Антипова";
-//acc1.Gender = "Женский";
-//acc1.SetEmployeeBirthDate("11.11.1969", company.Departments[3].DepartmentName);
-//acc1.Email = "SA@test.ru";
-//acc1.Phone = "79511234567";
-//company.Departments[3].Employees?.Add(acc1);
-
-//Employee oi1 = new Employee();
-//oi1.FirstName = "Лариса";
-//oi1.LastName = "Лобода";
-//oi1.Gender = "Женский";
-//oi1.SetEmployeeBirthDate("11.11.1900", company.Departments[4].DepartmentName);
-//oi1.Email = "LA@test.ru";
-//oi1.Phone = "79511234567";
-//company.Departments[4].Employees?.Add(oi1);
+company.Departments[0].Employees?.Add(new Employee("Иван", "Фролов", "12/12/2000", "Мужской", "qwe@test.ru", "79511234567", "Руководитель"));
+company.Departments[0].Employees?.Add(new Employee("Диана", "Шелестова", "11.11.1999", "Женский", "asd@test.ru", "79511234567", "Заместитель руководителя по общественным вопросам"));
+company.Departments[1].Employees?.Add(new Employee("Ирина", "Фурьева", "Женский", "11.11.1990", "IF@test.ru", "79511234567", "Разработчик"));
+company.Departments[2].Employees?.Add(new Employee("Ирина", "Фурьева", "Женский", "11.11.1983", "IF@test.ru", "79511234567", "Старший юрист"));
+company.Departments[3].Employees?.Add(new Employee("Светлана", "Антипова", "Женский", "11.11.1969", "SA@test.ru", "79511234567", "Главный бухгалтер"));
+company.Departments[4].Employees?.Add(new Employee("Лариса", "Лобода", "Женский", "11.11.1900", "LA@test.ru", "79511234567", "Старший специалист"));
 
 company.PrintDepartmentsInfo();
+
+int totalEmployees = company.GetTotalEmployeesCount();
+Console.WriteLine($"Общее количество сотрудников в компании: {totalEmployees}");
