@@ -5,20 +5,8 @@ using System;
 Company company = new Company("My Company", "Делаем все");
 company.Print();
 
-Department administration = new Department("Administration");
-company.Departments.Add(administration);
-
-Department it = new Department("IT");
-company.Departments.Add(it);
-
-Department legal = new Department("Legal");
-company.Departments.Add(legal);
-
-Department accounting = new Department("Accounting");
-company.Departments.Add(accounting);
-
-Department oi = new Department("OI");
-company.Departments.Add(oi);
+string[] departmentNames = new string[] { "Administration", "IT", "Legal", "Accounting", "OI" };
+foreach(string departmentName in departmentNames) company.Departments.Add(new Department(departmentName));
 
 company.Departments[0].Employees?.Add(new Employee("Иван", "Фролов", "12/12/2000", "Мужской", "qwe@test.ru", "79511234567", "Руководитель"));
 company.Departments[0].Employees?.Add(new Employee("Диана", "Шелестова", "11.11.1999", "Женский", "asd@test.ru", "79511234567", "Заместитель руководителя по общественным вопросам"));
@@ -31,3 +19,13 @@ company.PrintDepartmentsInfo();
 
 int totalEmployees = company.GetTotalEmployeesCount();
 Console.WriteLine($"Общее количество сотрудников в компании: {totalEmployees}");
+
+Department department;
+if (company != null)
+{
+    var temp = company.Departments.FirstOrDefault(department => department.DepartmentName == "IT");
+    if (temp != null) department = temp;
+}
+else { department = new Department(); }
+
+
