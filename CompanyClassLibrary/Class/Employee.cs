@@ -10,13 +10,17 @@ namespace CompanyClassLibrary.Class
     {
         public string? EmployeePosition { get; set; }
 
+        public string? DepartmentName { get; set; } // Название отдела, к которому принадлежит сотрудник
+
+
         // Конструктор со всеми параметрами
-        public Employee(string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
+        public Employee(string departmentName, string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
         {
             DateOnly temp;
 
             DateOnly.TryParse(birthDate, out temp);
 
+            DepartmentName = departmentName;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = temp;

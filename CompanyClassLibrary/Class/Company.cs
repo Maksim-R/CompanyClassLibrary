@@ -11,7 +11,7 @@ namespace CompanyClassLibrary.Class
         public string? Name { get; set; }
         public string? Description { get; set; }
         public List<Department> Departments { get; set; } = new List<Department>();
-
+        
         public Company() { }
         public Company(string? name, string? description) 
         {  
@@ -61,5 +61,31 @@ namespace CompanyClassLibrary.Class
             return totalEmployeesCount; // Возвращаем общее количество сотрудников
         }
 
+        // метод который добавляет отделы принимает на вход массив строк с именами отделов. company.Departments.Add(массив с именами департаментов)
+        public void AddDepartments(string[] departmentNames) // объявление метода AddDepartments, в классе Company. Метод принимает один значение типа string[], массив строк с названиями отделов.
+        {
+            foreach (string departmentName in departmentNames) //  цикл foreach, перебирает каждый элемент в массиве departmentNames. Для каждого элемента цикл присваивает значение переменной departmentName.
+            {
+                Departments.Add(new Department(departmentName)); // Внутри цикла foreach создается новый объект класса Department с именем departmentName. Затем этот новый объект добавляется в список Departments компании с помощью метода Add.
+            }
+        }
+
+        // Метод добавляет сотрудника в нужный отдел. 
+        public void AddEmployeeToDepartment(Employee employee, string departmentName) // Принимает на вход список сотрудников employee и названия департаментов
+        {
+            // Находим отдел по имени
+            Department department = Departments.FirstOrDefault(dep => dep.DepartmentName == departmentName);
+
+            // Если отдел найден, добавляем сотрудника
+            if (department != null)
+            {
+                department.Employees.Add(employee);
+                Console.WriteLine($"Сотрудник {employee.FirstName} {employee.LastName} добавлен в отдел {departmentName}");
+            }
+            else
+            {
+                Console.WriteLine($"Отдел {departmentName} не найден");
+            }
+        }
     }
 }
