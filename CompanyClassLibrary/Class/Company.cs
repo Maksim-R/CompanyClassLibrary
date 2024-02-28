@@ -71,8 +71,10 @@ namespace CompanyClassLibrary.Class
         }
 
         // Метод добавляет сотрудника в нужный отдел. 
-        public void AddEmployeeToDepartment(Employee employee, string departmentName) // Принимает на вход список сотрудников employee и названия департаментов
+        public void AddEmployeeToDepartment(Employee employee) // Принимает на вход список сотрудников employee и названия департаментов
         {
+            // Параметр берем у созданного сотрудника обращаясь к полю объекта empliyee
+            string departmentName = employee.DepartmentName;
             // Находим отдел по имени
             Department department = Departments.FirstOrDefault(dep => dep.DepartmentName == departmentName);
 
@@ -86,6 +88,36 @@ namespace CompanyClassLibrary.Class
             {
                 Console.WriteLine($"Отдел {departmentName} не найден");
             }
+        }
+
+        // Метод удаления сотрудника
+        public void RemoveEmployeeFromDepartment(Employee employee)
+        {
+            int tab = employee.TabNumber;
+            string departmentName = employee.DepartmentName;
+
+            Department department = Departments.FirstOrDefault(dep => dep.DepartmentName == departmentName); 
+            if (department != null) 
+            {
+                department.Employees.Remove(employee);
+                Console.WriteLine($"Сотрудник: {employee.FirstName}, Удален из отдела: {departmentName} ");
+            }
+        }
+
+        // Метод для поиска объекта сотрудника по табельному номеру
+        public Employee GetEmployee(int tabNumber)
+        {
+            Employee result = null;
+
+            foreach(Department dep in Departments) 
+            {
+                result = dep.Employees.FirstOrDefault(e => e.TabNumber == tabNumber);
+                if (result != null)
+                {
+                    break;
+                }                
+            }
+            return result;
         }
     }
 }

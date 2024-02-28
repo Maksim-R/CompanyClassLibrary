@@ -12,14 +12,16 @@ namespace CompanyClassLibrary.Class
 
         public string? DepartmentName { get; set; } // Название отдела, к которому принадлежит сотрудник
 
+        public int TabNumber { get; set; }
 
         // Конструктор со всеми параметрами
-        public Employee(string departmentName, string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
+        public Employee(int tabNumber, string departmentName, string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
         {
             DateOnly temp;
 
             DateOnly.TryParse(birthDate, out temp);
 
+            TabNumber = tabNumber;
             DepartmentName = departmentName;
             FirstName = firstName;
             LastName = lastName;
@@ -27,13 +29,13 @@ namespace CompanyClassLibrary.Class
             Gender = gender;
             Email = email;
             Phone = phone;
-            EmployeePosition = employeePosition;
+            EmployeePosition = employeePosition;            
         }
 
         public override void Print()
         {
             base.Print();
-            if (EmployeePosition != null && EmployeePosition != "") Console.WriteLine($"Должность: {EmployeePosition}");
+            if (EmployeePosition != null && EmployeePosition != "") Console.WriteLine($"Табельный номер {TabNumber}, Должность: {EmployeePosition}");
         }
     }
 }
