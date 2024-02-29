@@ -12,15 +12,22 @@ namespace CompanyClassLibrary.Class
         public string? DepartmentName { get; set; } = string.Empty;
         public List<Employee>? Employees { get; set; } // Список сотрудников
 
-        public Department() { } // Пустой конструктор (без параметров)
+        // Пустой конструктор (без параметров)
+        public Department() { } 
 
-        public Department(string departmentName) // Конструктор создает новый объект класса. конструктор инициализирует новый объект Department, устанавливая название отдела и создавая пустой список для хранения сотрудников. 
+        // Конструктор создает новый объект класса. конструктор инициализирует новый объект Department, устанавливая название отдела и создавая пустой список для хранения сотрудников.        
+        public Department(string departmentName)  
         {
             Employees = new List<Employee>(); // Создается новый список Employees типа List<Employee>(), который будет хранить информацию о сотрудниках в данном отделе. 
             DepartmentName = departmentName; // Значение параметра departmentName присваивается свойству DepartmentName объекта класса Department.
         }
-
-        public int GetEmployeesCount() // Количество сотрудников
+        /** 
+        * * GetEmployeesCount
+        * ! Метод отображает общее количество сотрудников
+        * TODO: 
+        * ? What
+        */
+        public int GetEmployeesCount() 
         {
             if (Employees != null) // Проверяем, что список сотрудников не равен null
             {
@@ -43,7 +50,8 @@ namespace CompanyClassLibrary.Class
             PrintEmployessCount();
         }
 
-        public void PrintEmployeesInfo() // Вывод информации о каждом сотруднике, который работает в данном отделе.
+        // Вывод информации о каждом сотруднике, который работает в данном отделе.
+        public void PrintEmployeesInfo() 
         {
             if (Employees != null)
             {
@@ -54,6 +62,6 @@ namespace CompanyClassLibrary.Class
                 }
             }            
         }
-               
+                       
     }
 }

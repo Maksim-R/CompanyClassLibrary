@@ -47,7 +47,7 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод для подсчета общего количества сотрудников во всех отделах компании
+        // Метод GetTotalEmployeesCount отображает общего количества сотрудников во всех отделах компании
         public int GetTotalEmployeesCount()
         {
             int totalEmployeesCount = 0; // Инициализируем переменную для хранения общего количества сотрудников
@@ -61,7 +61,7 @@ namespace CompanyClassLibrary.Class
             return totalEmployeesCount; // Возвращаем общее количество сотрудников
         }
 
-        // метод который добавляет отделы принимает на вход массив строк с именами отделов. company.Departments.Add(массив с именами департаментов)
+        // Метод AddDepartments добавляет отделы в список принимает на вход массив строк с именами отделов. company.Departments.Add(массив с именами департаментов)
         public void AddDepartments(string[] departmentNames) // объявление метода AddDepartments, в классе Company. Метод принимает один значение типа string[], массив строк с названиями отделов.
         {
             foreach (string departmentName in departmentNames) //  цикл foreach, перебирает каждый элемент в массиве departmentNames. Для каждого элемента цикл присваивает значение переменной departmentName.
@@ -70,7 +70,7 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод добавляет сотрудника в нужный отдел. 
+        // Метод AddEmployeeToDepartment добавляет сотрудника в нужный отдел. 
         public void AddEmployeeToDepartment(Employee employee) // Принимает на вход список сотрудников employee и названия департаментов
         {
             // Параметр берем у созданного сотрудника обращаясь к полю объекта empliyee
@@ -90,7 +90,7 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод удаления сотрудника
+        // Метод RemoveEmployeeFromDepartment удаляет объект сотрудника
         public void RemoveEmployeeFromDepartment(Employee employee)
         {
             int tab = employee.TabNumber;
@@ -104,7 +104,7 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод для поиска объекта сотрудника по табельному номеру
+        // Метод GetEmployee поиск объекта сотрудника по табельному номеру
         public Employee GetEmployee(int tabNumber)
         {
             Employee result = null;
@@ -119,5 +119,8 @@ namespace CompanyClassLibrary.Class
             }
             return result;
         }
+
+        // Метод перемещения объекта Employye в списке Departments
+        
     }
 }
