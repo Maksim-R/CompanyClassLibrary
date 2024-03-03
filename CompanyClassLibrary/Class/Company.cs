@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace CompanyClassLibrary.Class
 {
@@ -121,6 +122,23 @@ namespace CompanyClassLibrary.Class
         }
 
         // Метод перемещения объекта Employye в списке Departments
-        
+        /**
+        * Описание работы метода
+        * На вход принимается объект Employye с полями: int tabNumber, новым именем поля EmployeePosition
+        * Цикл foreach перебирает в объекте класса Department список Departments и сравнивает с данными принятыми на вход.
+        * Когда объект найден по табельномоу номеру применяем метод списка Remove для удаления объекта из этого списка
+        * Далее применяем к объекту метод списка Add для добавления в новый отдел.
+        * 
+        */
+        public void  MovingEmployeeDepartent(Employee employee, string newEmployeePosition)
+        {
+            int tab = employee.TabNumber;
+            string departmentName = employee.DepartmentName;            
+            
+            foreach(Department dep in Departments)
+            {
+                result = dep.Employees.Remove(e => e.TabNumber==tabNumber);
+            }
+        }
     }
 }

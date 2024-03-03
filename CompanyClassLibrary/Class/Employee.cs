@@ -10,6 +10,8 @@ namespace CompanyClassLibrary.Class
     {
         public string? EmployeePosition { get; set; }
 
+        public string? NewEmployeePosition { get; set; }        
+
         public string? DepartmentName { get; set; } // Название отдела, к которому принадлежит сотрудник
 
         public int TabNumber { get; set; }
@@ -30,6 +32,12 @@ namespace CompanyClassLibrary.Class
             Email = email;
             Phone = phone;
             EmployeePosition = employeePosition;            
+        }
+
+        public Employee(int tabNumber, string newEmployeePosition )
+        {
+            TabNumber = tabNumber;
+            NewEmployeePosition = newEmployeePosition;
         }
 
         public override void Print()
