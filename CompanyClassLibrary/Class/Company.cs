@@ -130,15 +130,15 @@ namespace CompanyClassLibrary.Class
         * Далее применяем к объекту метод списка Add для добавления в новый отдел.
         * 
         */
-        public void  MovingEmployeeDepartent(Employee employee, string newEmployeePosition)
-        {
-            int tab = employee.TabNumber;
-            string departmentName = employee.DepartmentName;            
+        // public void  MovingEmployeeDepartent(Employee employee, string newEmployeePosition)
+        // {
+        //     int tab = employee.TabNumber;
+        //     string departmentName = employee.DepartmentName;            
             
-            foreach(Department dep in Departments)
-            {
-                result = dep.Employees.Remove(e => e.TabNumber==tabNumber);
-            }
-        }
+        //     foreach(Department dep in Departments)
+        //     {
+        //         result = dep.Employees.Remove(e => e.TabNumber==tabNumber);
+        //     }
+        // }
     }
 }
