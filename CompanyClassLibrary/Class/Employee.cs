@@ -10,7 +10,7 @@ namespace CompanyClassLibrary.Class
     {
         public string? EmployeePosition { get; set; }
 
-        public string? NewEmployeePosition { get; set; }        
+        public string? NewEmployeeDepartment { get; set; } // Новое название отдела куда переместить сотрудника
 
         public string? DepartmentName { get; set; } // Название отдела, к которому принадлежит сотрудник
 
@@ -34,10 +34,10 @@ namespace CompanyClassLibrary.Class
             EmployeePosition = employeePosition;            
         }
 
-        public Employee(int tabNumber, string newEmployeePosition )
+        public Employee(int tabNumber, string newEmployeeDepartment)
         {
             TabNumber = tabNumber;
-            NewEmployeePosition = newEmployeePosition;
+            NewEmployeeDepartment = newEmployeeDepartment;
         }
 
         public override void Print()

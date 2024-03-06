@@ -121,24 +121,52 @@ namespace CompanyClassLibrary.Class
             return result;
         }
 
-        // Метод перемещения объекта Employye в списке Departments
-        /**
-        * Описание работы метода
-        * На вход принимается объект Employye с полями: int tabNumber, новым именем поля EmployeePosition
-        * Цикл foreach перебирает в объекте класса Department список Departments и сравнивает с данными принятыми на вход.
-        * Когда объект найден по табельномоу номеру применяем метод списка Remove для удаления объекта из этого списка
-        * Далее применяем к объекту метод списка Add для добавления в новый отдел.
-        * 
-        */
-        public void  MovingEmployeeDepartent(Employee employee, string newEmployeePosition)
+        // метод для перемещения сотрудника из его текущего отдела в назначеный
+        public void MovingEmployeeDepartent(int tabNumber, string newEmployeeDepartment)
         {
-            int tab = employee.TabNumber;
-            string departmentName = employee.DepartmentName;            
-            
-            foreach(Department dep in Departments)
+            Employee foundEmployee = null;
+            foreach (Department dep in Departments)
             {
-                result = dep.Employees.Remove(e => e.TabNumber==tabNumber);
+                foundEmployee = dep.Employees.FirstOrDefault(e => e.TabNumber == tabNumber && e.DepartmentName != newEmployeeDepartment);
+                if (foundEmployee != null)
+                {
+                    break;
+                }
+            }
+
+            if (foundEmployee != null)
+            {
+                foreach (Department dep in Departments)
+                {
+                    if (dep.DepartmentName == newEmployeeDepartment)
+                    {
+                        dep.Employees.Add(foundEmployee);
+                        Console.WriteLine($"Сотрудник {foundEmployee.FirstName} перемещен в отдел {newEmployeeDepartment}");
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Сотрудник с табельным номером {tabNumber} не найден в текущем отделе или уже находится в отделе {newEmployeeDepartment}");
             }
         }
+        // метод для удаления сотрудника из его текущего отдела
+        public void RemoveEmployeeFromDepartment(int tabNumber)
+        {
+            Employee employeeToRemove = null;
+            foreach (Department department in Departments)
+            {
+                employeeToRemove = department.Employees.FirstOrDefault(e => e.TabNumber == tabNumber);
+                if (employeeToRemove != null)
+                {
+                    department.Employees.Remove(employeeToRemove);
+                    Console.WriteLine($"Сотрудник с табельным номером {tabNumber} удален из отдела {department.DepartmentName}");
+                    return;
+                }
+            }
+            Console.WriteLine($"Сотрудник с табельным номером {tabNumber} не найден в отделах компании");
+        }
+
     }
 }

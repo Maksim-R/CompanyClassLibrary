@@ -18,7 +18,13 @@ company.AddEmployeeToDepartment(new Employee(5, "Accounting", "Светлана"
 company.AddEmployeeToDepartment(new Employee(6, "OI", "Лариса", "Лобода", "Женский", "11.11.1900", "LA@test.ru", "79511234567", "Старший специалист"));
 
 company.PrintDepartmentsInfo();
-// company.RemoveEmployeeFromDepartment(company.GetEmployee(1));
+company.MovingEmployeeDepartent(1,"IT");
+Console.ReadKey();
+company.PrintDepartmentsInfo();
+Console.ReadKey();
+company.RemoveEmployeeFromDepartment(1);
+company.PrintDepartmentsInfo();
+Console.ReadKey();
 // company.PrintDepartmentsInfo();
 
 int totalEmployees = company.GetTotalEmployeesCount();
