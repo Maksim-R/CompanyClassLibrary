@@ -20,6 +20,9 @@ namespace CompanyClassLibrary.Class
             Description = description; 
         }
 
+        /// <summary>
+        /// Выводит информацию о компании в консоль, включая название и описание.
+        /// </summary>
         public void Print()
         {
             Console.WriteLine($"Название Kомпании: {Name}");
@@ -27,17 +30,28 @@ namespace CompanyClassLibrary.Class
             Console.WriteLine("*******************************");
         }
 
+        /// <summary>
+        /// Возвращает количество отделов в компании.
+        /// </summary>
+        /// <returns>Количество отделов в компании.</returns>
         public int GetDepartmentsCount() 
         { 
             return Departments.Count; 
         }
 
-        public void PrintDepartmentsCount() 
+        /// <summary>
+        /// Выводит количество отделов компании в консоль.
+        /// </summary>
+        public void PrintDepartmentsCount()
         {
             Console.WriteLine($"Количество отделов: {GetDepartmentsCount()}");
+            Console.WriteLine("*******************************");
         }
 
-        public void PrintDepartmentsInfo() // Выводит в консоль количество отделов и сотрудников
+        /// <summary>
+        /// Выводит информацию о каждом отделе компании в консоль, включая количество отделов и сведения о сотрудниках в каждом отделе.
+        /// </summary>
+        public void PrintDepartmentsInfo()
         {
             PrintDepartmentsCount();
             foreach (Department department in Departments)
@@ -48,7 +62,10 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод GetTotalEmployeesCount отображает общего количества сотрудников во всех отделах компании
+        /// <summary>
+        /// Возвращает общее количество сотрудников во всех отделах компании.
+        /// </summary>
+        /// <returns>Общее количество сотрудников во всех отделах компании.</returns>
         public int GetTotalEmployeesCount()
         {
             int totalEmployeesCount = 0; // Инициализируем переменную для хранения общего количества сотрудников
@@ -62,8 +79,11 @@ namespace CompanyClassLibrary.Class
             return totalEmployeesCount; // Возвращаем общее количество сотрудников
         }
 
-        // Метод AddDepartments добавляет отделы в список принимает на вход массив строк с именами отделов. company.Departments.Add(массив с именами департаментов)
-        public void AddDepartments(string[] departmentNames) // объявление метода AddDepartments, в классе Company. Метод принимает один значение типа string[], массив строк с названиями отделов.
+        /// <summary>
+        /// Добавляет новые отделы в список отделов компании.
+        /// </summary>
+        /// <param name="departmentNames">Массив строк с названиями новых отделов.</param>
+        public void AddDepartments(string[] departmentNames) 
         {
             foreach (string departmentName in departmentNames) //  цикл foreach, перебирает каждый элемент в массиве departmentNames. Для каждого элемента цикл присваивает значение переменной departmentName.
             {
@@ -71,8 +91,11 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод AddEmployeeToDepartment добавляет сотрудника в нужный отдел. 
-        public void AddEmployeeToDepartment(Employee employee) // Принимает на вход список сотрудников employee и названия департаментов
+        /// <summary>
+        /// Добавляет сотрудника в отдел компании.
+        /// </summary>
+        /// <param name="employee">Добавляемый сотрудник.</param>
+        public void AddEmployeeToDepartment(Employee employee)
         {
             // Параметр берем у созданного сотрудника обращаясь к полю объекта empliyee
             string departmentName = employee.DepartmentName;
@@ -91,7 +114,10 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод RemoveEmployeeFromDepartment удаляет объект сотрудника
+        /// <summary>
+        /// Удаляет сотрудника из его текущего отдела.
+        /// </summary>
+        /// <param name="employee">Удаляемый сотрудник.</param>
         public void RemoveEmployeeFromDepartment(Employee employee)
         {
             int tab = employee.TabNumber;
@@ -105,7 +131,11 @@ namespace CompanyClassLibrary.Class
             }
         }
 
-        // Метод GetEmployee поиск объекта сотрудника по табельному номеру
+        /// <summary>
+        /// Поиск сотрудника по табельному номеру в отделах компании.
+        /// </summary>
+        /// <param name="tabNumber">Табельный номер сотрудника.</param>
+        /// <returns>Сотрудник с указанным табельным номером или null, если сотрудник не найден.</returns>
         public Employee GetEmployee(int tabNumber)
         {
             Employee result = null;
@@ -121,52 +151,53 @@ namespace CompanyClassLibrary.Class
             return result;
         }
 
-        // метод для перемещения сотрудника из его текущего отдела в назначеный
+        /// <summary>
+        /// Перемещает сотрудника из текущего отдела в указанный отдел.
+        /// </summary>
+        /// <param name="tabNumber">Табельный номер перемещаемого сотрудника.</param>
+        /// <param name="newEmployeeDepartment">Название нового отдела.</param>
         public void MovingEmployeeDepartent(int tabNumber, string newEmployeeDepartment)
         {
-            Employee foundEmployee = null;
+            Employee resultEmpl = null;
+
             foreach (Department dep in Departments)
             {
-                foundEmployee = dep.Employees.FirstOrDefault(e => e.TabNumber == tabNumber && e.DepartmentName != newEmployeeDepartment);
-                if (foundEmployee != null)
-                {
-                    break;
-                }
+                resultEmpl = dep.Employees.FirstOrDefault(e => e.TabNumber == tabNumber);
+                if (resultEmpl != null) break;
+                else Console.WriteLine($"Сотрудник: {resultEmpl.FirstName} не найден");
             }
 
-            if (foundEmployee != null)
+            Department resultDep = null;
+            if (resultEmpl != null) 
             {
-                foreach (Department dep in Departments)
+                resultDep = Departments.FirstOrDefault(emp => emp.DepartmentName == newEmployeeDepartment);
+
+                if (resultDep != null)
                 {
-                    if (dep.DepartmentName == newEmployeeDepartment)
-                    {
-                        dep.Employees.Add(foundEmployee);
-                        Console.WriteLine($"Сотрудник {foundEmployee.FirstName} перемещен в отдел {newEmployeeDepartment}");
-                        break;
-                    }
+                    resultDep.Employees.Add(resultEmpl);
+                    RemoveEmployeeFromDepartment(resultEmpl);
+                    Console.WriteLine($"Сотрудник: {resultEmpl.FirstName}, Перемещен в отдел: {newEmployeeDepartment}");
                 }
-            }
-            else
-            {
-                Console.WriteLine($"Сотрудник с табельным номером {tabNumber} не найден в текущем отделе или уже находится в отделе {newEmployeeDepartment}");
-            }
+            }      
         }
-        // метод для удаления сотрудника из его текущего отдела
-        public void RemoveEmployeeFromDepartment(int tabNumber)
+
+        /// <summary>
+        /// Выводит информацию о наличии сотрудника в отделах компании.
+        /// </summary>
+        /// <param name="tempEmployee">Сотрудник, для которого проверяется наличие в отделах.</param>
+        public void PrintContainsEmployee(Employee tempEmployee)
         {
-            Employee employeeToRemove = null;
-            foreach (Department department in Departments)
+            if (tempEmployee != null)
             {
-                employeeToRemove = department.Employees.FirstOrDefault(e => e.TabNumber == tabNumber);
-                if (employeeToRemove != null)
+                Departments.ForEach(emp =>
                 {
-                    department.Employees.Remove(employeeToRemove);
-                    Console.WriteLine($"Сотрудник с табельным номером {tabNumber} удален из отдела {department.DepartmentName}");
-                    return;
-                }
+                    if (emp.ContainsEmployee(tempEmployee))
+                    {
+                        Console.WriteLine($"Сотрудник {tempEmployee.LastName}, с табельным № {tempEmployee.TabNumber}, находится в отделе {tempEmployee.DepartmentName} ");
+                    }
+                });
             }
-            Console.WriteLine($"Сотрудник с табельным номером {tabNumber} не найден в отделах компании");
+            else Console.WriteLine("Ошибка при поиске сотрудника");
         }
-
     }
 }

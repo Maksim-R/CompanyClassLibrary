@@ -11,9 +11,12 @@
         public string? Email { get; set; }
         public string? Phone { get; set; }
 
-      
-
-        // Метод для вывода информации о сотруднике
+        /// <summary>
+        /// Метод для вывода информации о сотруднике
+        /// </summary>
+        /// <remarks>
+        /// Выводит информацию о сотруднике в консоль.
+        /// </remarks>
         public virtual void Print()
         {
             Console.WriteLine($"ID: {Id}");
@@ -25,7 +28,15 @@
             if (Phone != null && Phone != "") Console.WriteLine($"Телефон: {Phone}");
         }
 
-        // Создаем метод для преобразования типа DateOnly в тип string.
+        /// <summary>
+        /// Устанавливает дату рождения сотрудника на основе переданной строки с датой.
+        /// </summary>
+        /// <param name="dateString">Строка, содержащая дату рождения в формате, который может быть преобразован методом DateOnly.Parse.</param>
+        /// <param name="departmentName">Название отдела, к которому относится сотрудник, для отображения в сообщении об ошибке.</param>
+        /// <remarks>
+        /// Метод преобразует строку с датой рождения в объект типа DateOnly и устанавливает ее как дату рождения сотрудника.
+        /// В случае возникновения исключения при преобразовании строки в дату, выводит сообщение об ошибке с указанием названия отдела и данных о сотруднике.
+        /// </remarks>
         public void SetEmployeeBirthDate(string dateString, string departmentName)
         {
             try 

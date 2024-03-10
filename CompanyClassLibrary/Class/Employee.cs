@@ -16,7 +16,7 @@ namespace CompanyClassLibrary.Class
 
         public int TabNumber { get; set; }
 
-        // Конструктор со всеми параметрами
+        // Конструктор со всеми параметрами объекта сотрудика
         public Employee(int tabNumber, string departmentName, string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
         {
             DateOnly temp;
@@ -34,12 +34,19 @@ namespace CompanyClassLibrary.Class
             EmployeePosition = employeePosition;            
         }
 
+        // Конструктор параметрами объекта сотрудика для перемещения в новый отдел
         public Employee(int tabNumber, string newEmployeeDepartment)
         {
             TabNumber = tabNumber;
             NewEmployeeDepartment = newEmployeeDepartment;
         }
 
+        /// <summary>
+        /// Выводит информацию о сотруднике, включая его базовую информацию (ID, имя, фамилия, дата рождения, пол, электронная почта, телефон), а также его должность и табельный номер.
+        /// </summary>
+        /// <remarks>
+        /// Метод вызывает базовый метод Print() для вывода базовой информации о сотруднике, затем добавляет информацию о должности и табельном номере.
+        /// </remarks>
         public override void Print()
         {
             base.Print();
