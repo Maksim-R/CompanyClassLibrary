@@ -106,7 +106,7 @@ namespace CompanyClassLibrary.Class
             if (department != null)
             {
                 department.Employees.Add(employee);
-                Console.WriteLine($"Сотрудник {employee.FirstName} {employee.LastName} добавлен в отдел {departmentName}");
+                //Console.WriteLine($"Сотрудник {employee.FirstName} {employee.LastName} добавлен в отдел {departmentName}");
             }
             else
             {
@@ -198,6 +198,12 @@ namespace CompanyClassLibrary.Class
                 });
             }
             else Console.WriteLine("Ошибка при поиске сотрудника");
+        }
+
+
+        public void RemoveEmployeeByTabNumber(int tabNumber)
+        {
+            RemoveEmployeeFromDepartment(GetEmployee(tabNumber));
         }
     }
 }

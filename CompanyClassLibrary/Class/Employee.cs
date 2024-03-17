@@ -16,6 +16,9 @@ namespace CompanyClassLibrary.Class
 
         public int TabNumber { get; set; }
 
+        // Вызов пустого конструктора. GUID - создается автоматически при создании объекта.
+        public Employee() { }
+
         // Конструктор со всеми параметрами объекта сотрудика
         public Employee(int tabNumber, string departmentName, string firstName, string lastName, string birthDate, string gender, string email, string phone, string employeePosition)
         {

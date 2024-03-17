@@ -2,6 +2,7 @@
 using CompanyClassLibrary.Class;
 using System;
 using System.Runtime.Versioning;
+using System.Threading.Channels;
 
 Company company = new Company("My Company", "Делаем все");
 
@@ -18,19 +19,65 @@ company.AddEmployeeToDepartment(new Employee(6, "OI", "Лариса", "Лобо�
 //int totalEmployees = company.GetTotalEmployeesCount();
 //Console.WriteLine($"Общее количество сотрудников в компании: {totalEmployees}");
 
-Employee tempEmployee = company.GetEmployee(9);
+//Employee tempEmployee = company.GetEmployee(9);
 
-company.PrintContainsEmployee(tempEmployee);
+//company.PrintContainsEmployee(tempEmployee);
 
-Console.ReadKey();
+//Console.ReadKey();
 
-string hello = "";
 
-switch (hello)
+//string hello = "Добро пожаловать в пиложение компании ";
+//Console.WriteLine(hello);
+//Console.WriteLine("Ввести число с клавиатуры: ");
+
+
+string s;
+do
 {
-    case "Q":
-        Console.WriteLine("Завершение программы."); 
-        break;
+    Console.Clear();
+    Console.WriteLine("Меню:");
+    Console.WriteLine("1 - Добавить сотрудника");
+    Console.WriteLine("2 - Переместить сотрудника в другой отдел");
+    Console.WriteLine("3 - Удалить сотрудника");
+    Console.WriteLine("4 - Отобразить инфомацию о компании");
+    Console.WriteLine("'q' - ВЫХОД из программы");
+    Console.WriteLine("---------------------------");
+    Console.WriteLine("Введите число: ");
+    
+    s = Console.ReadLine();
+    Console.WriteLine($"Вы ввели: {s}");
+    
+    switch (s)
+    {
+        case "4":
+            company.PrintDepartmentsInfo();            
+            Console.WriteLine("***************************");
+            Console.WriteLine("Для продолжения нажмите любую клавишу: ");
+            Console.ReadKey();
+            break;
+        
+        case "3":            
+            int tabNumber;
+            Console.WriteLine("Введите табельный номер сотрудника: ");
+            tabNumber = Convert.ToInt32(Console.ReadLine());
+            company.RemoveEmployeeByTabNumber(tabNumber);
+            Console.ReadKey();
+            break;
+    }
+}
+while (s != "q");
+
+//string temp = Convert.ToInt32(Console.ReadLine());
+
+
+//string hello;
+
+
+//switch (hello)
+//{
+//    case "Q":
+//        Console.WriteLine("Завершение программы."); 
+//        break;
     //case значение2:
     //    код,выполняемый если выражение имеет значение2
     //    break;
@@ -41,4 +88,4 @@ switch (hello)
     //default:
     //    код, выполняемый если выражение не имеет ни одно из выше указанных значений
     //    break;
-}
+//}
