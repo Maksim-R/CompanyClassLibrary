@@ -105,8 +105,15 @@ namespace CompanyClassLibrary.Class
             // Если отдел найден, добавляем сотрудника
             if (department != null)
             {
-                department.Employees.Add(employee);
-                //Console.WriteLine($"Сотрудник {employee.FirstName} {employee.LastName} добавлен в отдел {departmentName}");
+                if(!department.ContainsEmployee(employee)) 
+                {
+                    department.Employees.Add(employee);
+                    //Console.WriteLine($"Сотрудник {employee.FirstName} {employee.LastName} добавлен в отдел {departmentName}");
+                }
+                else
+                {
+                    Console.WriteLine("Такой сотрудник уже в отделе");
+                }
             }
             else
             {
@@ -126,8 +133,11 @@ namespace CompanyClassLibrary.Class
             Department department = Departments.FirstOrDefault(dep => dep.DepartmentName == departmentName); 
             if (department != null) 
             {
-                department.Employees.Remove(employee);
-                Console.WriteLine($"Сотрудник: {employee.FirstName}, Удален из отдела: {departmentName} ");
+                if(department.ContainsEmployee(employee)) 
+                {
+                    department.Employees.Remove(employee);
+                    Console.WriteLine($"Сотрудник: {employee.FirstName}, Удален из отдела: {departmentName} ");
+                }                
             }
         }
 
@@ -164,7 +174,7 @@ namespace CompanyClassLibrary.Class
             {
                 resultEmpl = dep.Employees.FirstOrDefault(e => e.TabNumber == tabNumber);
                 if (resultEmpl != null) break;
-                else Console.WriteLine($"Сотрудник: {resultEmpl.FirstName} не найден");
+                //else Console.WriteLine($"Сотрудник: {resultEmpl.FirstName} не найден");
             }
 
             Department resultDep = null;
@@ -174,7 +184,7 @@ namespace CompanyClassLibrary.Class
 
                 if (resultDep != null)
                 {
-                    resultDep.Employees.Add(resultEmpl);
+                    AddEmployeeToDepartment(resultEmpl);
                     RemoveEmployeeFromDepartment(resultEmpl);
                     Console.WriteLine($"Сотрудник: {resultEmpl.FirstName}, Перемещен в отдел: {newEmployeeDepartment}");
                 }
@@ -200,10 +210,28 @@ namespace CompanyClassLibrary.Class
             else Console.WriteLine("Ошибка при поиске сотрудника");
         }
 
-
         public void RemoveEmployeeByTabNumber(int tabNumber)
         {
             RemoveEmployeeFromDepartment(GetEmployee(tabNumber));
+        }
+
+        /// <summary>
+        /// Получает максимальный табельный номер среди всех сотрудников в отделах компании.
+        /// </summary>
+        /// <returns>Максимальный табельный номер.</returns>
+        public int GetMaxTabNumber()
+        {
+            int maxTabNumber = 0;
+            int tempTabNumber = 0;
+            foreach (Department dep in Departments)
+            {
+                tempTabNumber = dep.Employees.Max(emp => emp.TabNumber); 
+                if (tempTabNumber > maxTabNumber)
+                {
+                    maxTabNumber = tempTabNumber;
+                }
+            }
+                return maxTabNumber;
         }
     }
 }

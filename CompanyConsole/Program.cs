@@ -40,20 +40,23 @@ do
     Console.WriteLine("2 - Переместить сотрудника в другой отдел");
     Console.WriteLine("3 - Удалить сотрудника");
     Console.WriteLine("4 - Отобразить инфомацию о компании");
+    Console.WriteLine("5 - Отобразить максимальный табельный номер ");
     Console.WriteLine("'q' - ВЫХОД из программы");
     Console.WriteLine("---------------------------");
     Console.WriteLine("Введите число: ");
     
     s = Console.ReadLine();
     Console.WriteLine($"Вы ввели: {s}");
-    
+    int tabNumberInt = 0;
+
+
     switch (s)
     {
         /// Добавление пользователя в режиме диалога
         case "1":
             Console.WriteLine("Введите данные о сотруднике:");
             Console.Write("Табельный номер: ");
-            int tabNumberInt = Convert.ToInt32(Console.ReadLine());
+            tabNumberInt = Convert.ToInt32(Console.ReadLine());
             Console.Write("Отдел: ");
             string departmentNameStr = Console.ReadLine();
             Console.Write("Имя: ");
@@ -78,12 +81,16 @@ do
             Console.ReadKey();
             break;
 
-        case "4":
-            company.PrintDepartmentsInfo();            
-            Console.WriteLine("***************************");
-            Console.WriteLine("Для продолжения нажмите любую клавишу: ");
-            Console.ReadKey();
-            break;
+        case "2":
+            {
+                Console.WriteLine("Введите табельный номер сотрудника: ");
+                tabNumberInt = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите имя нового отдела: ");
+                string newDepartmentNameStr = Console.ReadLine();
+                company.MovingEmployeeDepartent(tabNumberInt, newDepartmentNameStr);
+                Console.ReadKey();
+            }
+            break;                  
         
         case "3":            
             int tabNumber;
@@ -92,6 +99,18 @@ do
             company.RemoveEmployeeByTabNumber(tabNumber);
             Console.ReadKey();
             break;
+
+        case "4":
+            company.PrintDepartmentsInfo();
+            Console.WriteLine("***************************");
+            Console.WriteLine("Для продолжения нажмите любую клавишу: ");
+            Console.ReadKey();
+            break;
+
+        case "5":
+            Console.WriteLine($"Максимальный табельный номер: {company.GetMaxTabNumber()}");
+            Console.ReadKey();
+            break; 
     }
 }
 while (s != "q");
