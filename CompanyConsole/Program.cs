@@ -49,6 +49,34 @@ do
     
     switch (s)
     {
+        case "1":
+            Console.WriteLine("Введите данные о сотруднике:");
+            Console.Write("Табельный номер: ");
+            int tabNumberInt = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Отдел: ");
+            string departmentNameStr = Console.ReadLine();
+            Console.Write("Имя: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Фамилия: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Дата рождения (ДД.ММ.ГГГГ): ");
+            string birthDateStr = Console.ReadLine();
+            DateOnly birthDate = DateOnly.Parse(birthDateStr);
+            Console.Write("Пол: ");
+            string gender = Console.ReadLine();
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+            Console.Write("Телефон: ");
+            string phone = Console.ReadLine();
+            Console.Write("Должность: ");
+            string position = Console.ReadLine();
+
+            Employee newEmployee = new Employee(tabNumberInt, departmentNameStr, firstName, lastName, birthDateStr, gender, email, phone, position);
+            company.AddEmployeeToDepartment(newEmployee);
+            Console.WriteLine("Сотрудник успешно добавлен.");
+            Console.ReadKey();
+            break;
+
         case "4":
             company.PrintDepartmentsInfo();            
             Console.WriteLine("***************************");
