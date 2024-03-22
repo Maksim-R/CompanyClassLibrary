@@ -53,7 +53,7 @@ namespace CompanyClassLibrary.Class
         public override void Print()
         {
             base.Print();
-            if (EmployeePosition != null && EmployeePosition != "") Console.WriteLine($"Табельный номер {TabNumber}, Должность: {EmployeePosition}");
+            if (EmployeePosition != null && EmployeePosition != "") Console.WriteLine($"{TabNumber} | {EmployeePosition} |");
         }
     }
 }

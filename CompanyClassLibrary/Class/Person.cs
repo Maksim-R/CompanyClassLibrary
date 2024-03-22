@@ -19,13 +19,14 @@
         /// </remarks>
         public virtual void Print()
         {
-            Console.WriteLine($"ID: {Id}");
-            if (FirstName != null && FirstName != "") Console.WriteLine($"Имя: {FirstName}");
-            if (LastName != null && LastName != "") Console.WriteLine($"Фамиля: {LastName}");
-            if (BirthDate != DateOnly.Parse("01.01.0001")) Console.WriteLine($"Дата рождения: {BirthDate}");
-            if (Gender != null && Gender != "") Console.WriteLine($"Пол: {Gender}");
-            if (Email != null && Email != "") Console.WriteLine($"Электронная почта: {Email}");
-            if (Phone != null && Phone != "") Console.WriteLine($"Телефон: {Phone}");
+            //Console.WriteLine($"ID: {Id}");
+
+            if (FirstName != null && FirstName != "") Console.Write($"| {FirstName} | ");
+            if (LastName != null && LastName != "") Console.Write($"{LastName} | ");
+            if (BirthDate != DateOnly.Parse("01.01.0001")) Console.Write($"   {BirthDate} | ");
+            if (Gender != null && Gender != "") Console.Write($"{Gender} | ");
+            if (Email != null && Email != "") Console.Write($"{Email} | ");
+            if (Phone != null && Phone != "") Console.Write($"{Phone} | ");
         }
 
         /// <summary>

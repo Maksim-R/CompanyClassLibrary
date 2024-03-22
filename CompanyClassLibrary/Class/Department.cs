@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,9 +48,9 @@ namespace CompanyClassLibrary.Class
         /// <summary>
         /// Выводит информацию об общем количестве сотрудников в отделе.
         /// </summary>
-        public void PrintEmployessCount()
+        public string PrintEmployessCount()
         {
-            Console.WriteLine($"Количестово сотрудников в отделе: {GetEmployeesCount()}");
+            return GetEmployeesCount().ToString();
         }
 
         /// <summary>
@@ -55,8 +58,7 @@ namespace CompanyClassLibrary.Class
         /// </summary>
         public void PrintDepartmentInfo()
         {
-            Console.WriteLine($"Название отдела: {DepartmentName}");
-            PrintEmployessCount();
+            Console.WriteLine($"| {DepartmentName} | {PrintEmployessCount()} |");            
         }
 
         /// <summary>
@@ -64,12 +66,22 @@ namespace CompanyClassLibrary.Class
         /// </summary>
         public void PrintEmployeesInfo()
         {
+            string num = "№";
+            string firstName = "Имя";
+            string lastName = "Фамилия";
+            string birthDate = "Дата рождения";
+            string email = "Email";
+            string phone = "Телефон";
+            string tabNumber = "Таб. №";
+            string employeePosition = "Должность";
             if (Employees != null)
             {
-                foreach (Employee employee in Employees) // Цикл перебирает каждого сотрудника (Employee) в списке Employees текущего отдела.
+                Console.WriteLine($"| {num} | {firstName} | {lastName} | {birthDate} | {email} | {phone} | {tabNumber} | {employeePosition} |");
+                int number = 0;
+                foreach (Employee employee in Employees)
                 {
+                    Console.Write($"|{++number}");
                     employee.Print();
-                    Console.WriteLine("----------------------");
                 }
             }
         }

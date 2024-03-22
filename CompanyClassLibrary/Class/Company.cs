@@ -57,8 +57,10 @@ namespace CompanyClassLibrary.Class
             foreach (Department department in Departments)
             {
                 department.PrintDepartmentInfo();
-                Console.WriteLine("---------------------");
+                Console.WriteLine("----------------------");
                 department.PrintEmployeesInfo();
+                Console.WriteLine();
+                Console.WriteLine();
             }
         }
 
@@ -223,15 +225,22 @@ namespace CompanyClassLibrary.Class
         {
             int maxTabNumber = 0;
             int tempTabNumber = 0;
-            foreach (Department dep in Departments)
+            if (Departments.Count > 0)
             {
-                tempTabNumber = dep.Employees.Max(emp => emp.TabNumber); 
-                if (tempTabNumber > maxTabNumber)
+                foreach (Department dep in Departments)
                 {
-                    maxTabNumber = tempTabNumber;
-                }
+                    if (dep.Employees.Count > 0)
+                    {
+                        tempTabNumber = dep.Employees.Max(emp => emp.TabNumber);
+                        if (tempTabNumber > maxTabNumber)
+                        {
+                            maxTabNumber = tempTabNumber;
+                        }
+                    }
+                    
+                }                
             }
-                return maxTabNumber;
+            return maxTabNumber;
         }
     }
 }
