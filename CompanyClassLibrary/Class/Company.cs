@@ -109,7 +109,7 @@ namespace CompanyClassLibrary.Class
             {
                 if(!department.ContainsEmployee(employee)) 
                 {
-                    department.Employees.Add(employee);
+                    department.Employees.Add(employee);                    
                     //Console.WriteLine($"Сотрудник {employee.FirstName} {employee.LastName} добавлен в отдел {departmentName}");
                 }
                 else
@@ -121,6 +121,35 @@ namespace CompanyClassLibrary.Class
             {
                 Console.WriteLine($"Отдел {departmentName} не найден");
             }
+        }
+
+
+        public void AddEmployeeToDepartment(Employee employee, string path)
+        {
+            // Параметр берем у созданного сотрудника обращаясь к полю объекта empliyee
+            string departmentName = employee.DepartmentName;
+            // Находим отдел по имени
+            Department department = Departments.FirstOrDefault(dep => dep.DepartmentName == departmentName);
+
+            // Если отдел найден, добавляем сотрудника
+            if (department != null)
+            {
+                if (!department.ContainsEmployee(employee))
+                {
+                    department.Employees.Add(employee);
+                    //string temp = employee.GetEmployeeParsString();
+                    File.AppendAllLines(path, new string[] { employee.GetEmployeeParsString() });
+                }
+                else
+                {
+                    Console.WriteLine("Такой сотрудник уже в отделе");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Отдел {departmentName} не найден");
+            }
+           
         }
 
         /// <summary>

@@ -9,29 +9,49 @@ Company company = new Company("My Company", "Делаем все");
 string[] departmentName = new string[] { "Administration", "IT", "Legal", "Accounting", "OI" };
 company.AddDepartments(departmentName);
 
-company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Administration", "Иван", "Фролов", "12/12/2000", "Мужской", "qwe@test.ru", "79511234567", "Руководитель"));
-company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Administration", "Диана", "Шелестова", "11.11.1999", "Женский", "asd@test.ru", "79511234567", "Заместитель руководителя по общественным вопросам"));
-company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "IT", "Ирина", "Фурьева", "Женский", "11.11.1990", "IF@test.ru", "79511234567", "Разработчик"));
-company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Legal", "Анна", "Самойлова", "Женский", "11.11.1983", "IF@test.ru", "79511234567", "Старший юрист"));
-company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Accounting", "Светлана", "Антипова", "Женский", "11.11.1969", "SA@test.ru", "79511234567", "Главный бухгалтер"));
-company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "OI", "Лариса", "Лобода", "Женский", "11.11.1900", "LA@test.ru", "79511234567", "Старший специалист"));
-
-//int totalEmployees = company.GetTotalEmployeesCount();
-//Console.WriteLine($"Общее количество сотрудников в компании: {totalEmployees}");
-
-//Employee tempEmployee = company.GetEmployee(9);
-
-//company.PrintContainsEmployee(tempEmployee);
-
-//Console.ReadKey();
-
-
-//string hello = "Добро пожаловать в пиложение компании ";
-//Console.WriteLine(hello);
-//Console.WriteLine("Ввести число с клавиатуры: ");
+const string path = @"C:\Users\Maksi\source\repos\Persons_Project\CompanyConsole\DB\Employees.txt";
+FileInfo fileInfo = new FileInfo(path);
+if (fileInfo.Exists)
+{
+    List<string> result = File.ReadAllLines(path).ToList();
+    foreach (string line in result)
+    {
+        string[] temp = line.Split(',');
+        for (int i = 0; i < temp.Length; i++) temp[i] = temp[i].Trim();
+        company.AddEmployeeToDepartment(new Employee(Convert.ToInt32(temp[0]), temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8]));
+    }
+}
+else
+{
+    Console.WriteLine("Путь к файлу не найден!");
+    Console.WriteLine("Для выхода нажмите любую клавишу...");
+    Console.ReadKey();
+}
 
 
-string? s;
+    //company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Administration", "Иван", "Фролов", "12/12/2000", "Мужской", "qwe@test.ru", "79511234567", "Руководитель"));
+    //company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Administration", "Диана", "Шелестова", "11.11.1999", "Женский", "asd@test.ru", "79511234567", "Заместитель руководителя по общественным вопросам"));
+    //company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "IT", "Ирина", "Фурьева", "Женский", "11.11.1990", "IF@test.ru", "79511234567", "Разработчик"));
+    //company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Legal", "Анна", "Самойлова", "Женский", "11.11.1983", "IF@test.ru", "79511234567", "Старший юрист"));
+    //company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "Accounting", "Светлана", "Антипова", "Женский", "11.11.1969", "SA@test.ru", "79511234567", "Главный бухгалтер"));
+    //company.AddEmployeeToDepartment(new Employee(company.GetMaxTabNumber() + 1, "OI", "Лариса", "Лобода", "Женский", "11.11.1900", "LA@test.ru", "79511234567", "Старший специалист"));
+
+    //int totalEmployees = company.GetTotalEmployeesCount();
+    //Console.WriteLine($"Общее количество сотрудников в компании: {totalEmployees}");
+
+    //Employee tempEmployee = company.GetEmployee(9);
+
+    //company.PrintContainsEmployee(tempEmployee);
+
+    //Console.ReadKey();
+
+
+    //string hello = "Добро пожаловать в пиложение компании ";
+    //Console.WriteLine(hello);
+    //Console.WriteLine("Ввести число с клавиатуры: ");
+
+
+    string? s;
 do
 {
     Console.Clear();
@@ -55,6 +75,7 @@ do
     {
         /// Добавление пользователя в режиме диалога
         case "1":
+
             Console.WriteLine("Введите данные о сотруднике:");            
             Console.Write("Отдел: ");
             string departmentNameStr = Console.ReadLine();
@@ -75,7 +96,7 @@ do
             string position = Console.ReadLine();
 
             Employee newEmployee = new Employee(company.GetMaxTabNumber() + 1, departmentNameStr, firstName, lastName, birthDateStr, gender, email, phone, position);
-            company.AddEmployeeToDepartment(newEmployee);
+            company.AddEmployeeToDepartment(newEmployee, path);
             Console.WriteLine("Сотрудник успешно добавлен.");
             Console.ReadKey();
             break;

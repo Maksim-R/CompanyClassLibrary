@@ -55,5 +55,21 @@ namespace CompanyClassLibrary.Class
             base.Print();
             if (EmployeePosition != null && EmployeePosition != "") Console.WriteLine($"{TabNumber} | {EmployeePosition} |");
         }
+
+        public string GetEmployeeParsString()
+        {
+            string result = TabNumber.ToString() + "," 
+                + DepartmentName + ","
+                + FirstName + ","
+                + LastName + ","
+                + BirthDate + ","
+                + Gender + ","
+                + Email + ","
+                + Phone + ","
+                + EmployeePosition;
+            
+
+            return result;
+        }
     }
 }
